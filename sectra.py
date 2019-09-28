@@ -51,10 +51,13 @@ while True:
                 # before doing any operations
                 if val_or_key in registers:
                     key2=val_or_key
+                    if operand == 'ADD':
+                      registers[key]=registers[key]+registers[key2]
                 elif is_integer(val_or_key):
                     print('its an int!')
+                    integer=int(val_or_key)
                     if operand == 'ADD':
-                      registers[key]=registers[key]+int(val_or_key)
+                      registers[key]=registers[key]+integer
                     print(registers)
                 else:
                     print("this is not an integer, please enter integers!")
