@@ -5,21 +5,29 @@ while True:
     # A requirement is for it to be case insensitive. Solved by only dealing with CAPITALS
 
     print(input_data)
-    split_input=input_data.split(" ")
-    print(split_input)
-    if len(split_input)==1:
-        if split_input[0]=="QUIT":
-            print("sequence finished, exiting")
-            #after this all prints should happen
-            break;
+    #only do things if input_data is not empty
+    if input_data:
+        split_input=input_data.split(" ")
+        print(split_input)
 
-    if len(split_input)==2:
-        if split_input[0]=="PRINT":
-            print("now do prints")
+        #start by checking the length of the input
+        if len(split_input)==1:
+            if split_input[0]=="QUIT":
+                print("sequence finished, exiting")
+                break;
+            else:
+                print("You input only one command, but is not a quit. Error!")
+
+        if len(split_input)==2:
+            if split_input[0]=="PRINT":
+                print("now do prints")
+            else:
+                print("You input two commands, but the first one was not a print. Error!")
+        if len(split_input)==3:
+            if split_input[1] not in allowed_operands:
+                print("this operand is currently not supported")
         else:
-            print("You input two commands, but the first one was not a print. Error!")
-    if len(split_input)==3:
-
-        if split_input[1] not in allowed_operands:
-            print("this operand is currently not supported")
+            print("You entered too many commands! Error!")
+    else:
+        print("you have to input something! Error!")
     
