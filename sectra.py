@@ -18,7 +18,12 @@ def do_operation(val1, operand, val2):
         return val1*val2
 
 if len(sys.argv)==2:
-    print("opening file:"+str(sys.argv[1]))
+    file_name=str(sys.argv[1])
+    print("opening file:"+file_name)
+    f = open(file_name,"r")
+    for line in f:
+        print(line)
+    f.close()
 else:
 
     while True:    
