@@ -28,6 +28,10 @@ while True:
         elif len(split_input)==2:
             if split_input[0]=="PRINT":
                 print("now do prints")
+                if split_input[1] in registers:
+                    print(registers[split_input[1]])
+                else:
+                    print("this register does not exist! Error!")
             else:
                 print("You input two commands, but the first one was not a print. Error!")
         elif len(split_input)==3:
