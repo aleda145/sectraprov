@@ -1,4 +1,5 @@
 allowed_operands=['ADD','SUBTRACT','MULTIPLY']
+registers={}
 
 while True:    
     input_data=input("enter input").upper()
@@ -26,6 +27,14 @@ while True:
         if len(split_input)==3:
             if split_input[1] not in allowed_operands:
                 print("this operand is currently not supported")
+            else:
+                ### magic happens here
+
+                # if gotten to this point the register will be a key in the registers dict
+                key = split_input[0]
+                operand = split_input[1]
+                val_or_key = split_input[2]
+                    
         else:
             print("You entered too many commands! Error!")
     else:
