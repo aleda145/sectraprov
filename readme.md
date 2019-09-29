@@ -65,7 +65,7 @@ then tries to print a.
 
 but b has no value
 
-Requirements do not specificy what should happen.
+Requirements do not specify what should happen.
 
 This results in a key error.
 
