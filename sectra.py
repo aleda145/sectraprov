@@ -11,6 +11,7 @@ def is_integer(val):
         return False
 
 def do_operation(val1, operand, val2):
+    print(val1,operand,val2)
     if operand =='ADD':
         return val1+val2
     if operand=='SUBTRACT':
@@ -18,6 +19,19 @@ def do_operation(val1, operand, val2):
     if operand=='MULTIPLY':
         return val1*val2
 
+def do_saved_commands(key):
+    print(key)
+    for command in saved_commands[key]:
+        # print(command)
+        # print(command[1])
+        if command[1] in saved_commands.keys():
+            #its a key too! Recursion!
+            print("its a key")
+            # print(command[1])
+            do_saved_commands(command[1])
+        registers[key]=do_operation(registers[key],command[0],registers[command[1]])
+        print(command)
+        #need to check if there are subcommands?
 
 def input_line(input_data):
     
@@ -39,6 +53,9 @@ def input_line(input_data):
             if split_input[0]=="PRINT":
                 # print("now do prints")
                 if split_input[1] in registers:
+                    if split_input[1] in saved_commands:
+                        print("gotta do the saved commands!")
+                        do_saved_commands(split_input[1])
                     print(registers[split_input[1]])
                 else:
                     print("this register does not exist! Error!")
