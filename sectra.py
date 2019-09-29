@@ -32,14 +32,13 @@ def input_line(input_data):
     if input_data:
         input_data=input_data.upper()
         # A requirement is for it to be case insensitive. Solved by only dealing with CAPITALS
-        #when reading from file it is necessary to split the input to remove trailing \n
+        # when reading from file it is necessary to strip the input to remove trailing \n
         strip_input=input_data.strip()
-        #after stripping split the input to isolate the commands
+        # after stripping split the input to isolate the commands
         split_input=strip_input.split(" ")
-        #start by checking the length of the input
+        # start by checking the length of the input
         if len(split_input)==1:
             print("Warning! one command inputs are not needed when reading from file.")
-            print(registers)
         elif len(split_input)==2:
             if split_input[0]=="PRINT":
                 if split_input[1] in registers:
@@ -57,7 +56,6 @@ def input_line(input_data):
                 # if gotten to this point the register will be a key in the registers dict
                 key = split_input[0]
                 # check first if key exists in registers. If not give it the value 0.
-                # What will happen if reg1 MULTIPLY 5 happens when reg1 has no unassigned val?
                 if key not in registers:
                     registers[key]=0
                 operand = split_input[1]
@@ -74,11 +72,10 @@ def input_line(input_data):
                     registers[key]=do_operation(registers[key], operand, integer)
                 else:
                     # if the input is not an existing register or an integer
-                    # assume that its a register that will be assigned values later?
-                    # Then the commands have to be saved?
+                    # assume that its a register that will be assigned values later
+                    # Then the commands have to be saved
                     if key not in saved_commands:
                         saved_commands[key]=[]
-                    # saved_commands[key]=[operand,val_or_key]
                     saved_commands[key].append([operand,val_or_key])
         else:
             print("You entered too many commands! Error!")
@@ -95,14 +92,14 @@ if len(sys.argv)==2:
 else:
     while True:
         # A requirement is for it to be case insensitive. Solved by only dealing with CAPITALS
-        input_data=input("enter input").upper()
+        input_data=input("enter input: ").upper()
         split_input=input_data.split(" ")    
         if len(split_input)==1:
             if split_input[0]=="QUIT":
                 print("sequence finished, exiting")
-                break;
+                break
             else:
-                print("You input only one command, but is not a quit. Error!")
+                print("You input only one command, but it is not a quit. Error!")
         else:
             input_line(input_data)
     
