@@ -1,0 +1,5 @@
+2 add 3
+3 add 2
+print 3 
+print 2 
+quit

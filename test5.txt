@@ -1,0 +1,6 @@
+a add b
+b add c
+c add d
+d add 5
+print a 
+quit

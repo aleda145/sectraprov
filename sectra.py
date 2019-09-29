@@ -24,6 +24,8 @@ def do_saved_commands(key):
             #its a key too! do recursion!
             do_saved_commands(command[1])
         registers[key]=do_operation(registers[key],command[0],registers[command[1]])
+    #after executing the saved commands, delete them
+    del saved_commands[key]
 
 def input_line(input_data):
     
@@ -60,7 +62,7 @@ def input_line(input_data):
                     registers[key]=0
                 operand = split_input[1]
                 val_or_key = split_input[2]
-                #since both values and registers can be in the third argument
+                # since both values and registers can be in the third argument
                 # it is necessary to check if it exists in the register dict
                 # before doing any operations
                 if val_or_key in registers:

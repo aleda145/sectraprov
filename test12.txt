@@ -1,0 +1,5 @@
+a add b
+c add d
+b multiply 5
+b add 2
+print a 
