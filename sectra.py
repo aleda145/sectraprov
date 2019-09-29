@@ -1,6 +1,7 @@
 import sys
 allowed_operands=['ADD','SUBTRACT','MULTIPLY']
 registers={}
+saved_commands={}
 
 def is_integer(val):
     try:
@@ -33,7 +34,7 @@ def input_line(input_data):
         #start by checking the length of the input
         if len(split_input)==1:
             print("Warning! one command inputs are not needed when reading from file.")
-
+            print(registers)
         elif len(split_input)==2:
             if split_input[0]=="PRINT":
                 # print("now do prints")
@@ -63,7 +64,10 @@ def input_line(input_data):
                 #since both values and registers can be in the third argument
                 # it is necessary to check if it exists in the register dict
                 # before doing any operations
+
+
                 if val_or_key in registers:
+                    #if it is a register with assigned values, simply do the operation
                     key2=val_or_key
                     registers[key]=do_operation(registers[key], operand, registers[key2])
                 elif is_integer(val_or_key):
@@ -72,7 +76,16 @@ def input_line(input_data):
                     registers[key]=do_operation(registers[key], operand, integer)
                     # print(registers)
                 else:
-                    print("this is not an integer, please enter integers!")
+                    # if the input is not an existing register or an integer
+                    # assume that its a register that will be assigned values later?
+                    # Then the commands have to be saved?
+                    if key not in saved_commands:
+                        saved_commands[key]=[]
+                    # saved_commands[key]=[operand,val_or_key]
+                    saved_commands[key].append([operand,val_or_key])
+                    print(saved_commands) 
+                    print("saved command!")
+                    
                     #if not it has to be a number, which has to be checked.
         else:
             print("You entered too many commands! Error!")
